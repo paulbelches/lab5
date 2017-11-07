@@ -1,5 +1,8 @@
 import java.util.ArrayList;
-
+/*Controlador.class
+ * Raúl Monzón 17014
+ * Paul Belches 17088
+ */
 public class Controlador {
 	
 	private ArrayList<Tanque> tanques;
@@ -7,6 +10,9 @@ public class Controlador {
 	private db db; 
 	private int contador;
 	
+	/**
+	 * Constructor
+	 */
 	public Controlador() {
 		tanques = new ArrayList<Tanque>();
 		muni = new ArrayList<Municipio>();
@@ -15,19 +21,34 @@ public class Controlador {
 		muni.add(new Municipio(123400, "Guatemala"));
 	}
 	
+	/**
+	 * @return
+	 */
 	public ArrayList<Tanque> getTanques() {
 		return tanques;
 	}
 	
+	/**
+	 * @param posTanque
+	 * @param posMuni
+	 * @param posValvula
+	 * @param estado
+	 */
 	public void cambiarEstado(int posTanque, int posMuni, int posValvula, boolean estado) {
 		tanques.get(posTanque).activar(muni.get(posMuni), posValvula, estado);
 		db.guardar(tanques);
 	}
 	
+	/**
+	 * @param tanques
+	 */
 	public void setTanques (ArrayList<Tanque> tanques) {
 		this.tanques = tanques;
 	}
 	
+	/**
+	 * @return
+	 */
 	public String tanques() {
 		String s = "";
 		for (int i = 0; i<tanques.size();i++) {
@@ -36,6 +57,9 @@ public class Controlador {
 		return s;
 	}
 	
+	/**
+	 * @return
+	 */
 	public int cantidadV() {
 		/*String s = "";
 		for (int i = 0; i<tanques.size();i++) {
@@ -53,6 +77,9 @@ public class Controlador {
 		return s;
 	}
 	
+	/**
+	 * @return
+	 */
 	public double cantidadR() {
 		double vt = 0;
 		for (int i = 0; i<tanques.size();i++) {
@@ -66,6 +93,14 @@ public class Controlador {
 		return vt;
 	}
 	
+	/**
+	 * @param tipo_tanque
+	 * @param altura
+	 * @param radio
+	 * @param ancho
+	 * @param profundidad
+	 * @param id
+	 */
 	public void AgregarTanque(int tipo_tanque,double altura, double radio, double ancho, double profundidad, long id) {
 		if (contador<10) {
 				if (tipo_tanque==2) {
@@ -90,6 +125,15 @@ public class Controlador {
 		
 	}
 	
+	/**
+	 * @param tipo_tanque
+	 * @param altura
+	 * @param radio
+	 * @param ancho
+	 * @param profundidad
+	 * @param id
+	 * @param pos
+	 */
 	public void modificar(int tipo_tanque,double altura, double radio, double ancho, double profundidad, long id,int pos) {
 		if (tipo_tanque==1) {
 			Tanque circulo=new Cilindrico(id,altura, radio);

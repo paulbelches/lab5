@@ -6,8 +6,10 @@ import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Query;
 
 import com.mongodb.MongoClient;
-
-
+/*db.class
+* Raúl Monzón 17014
+* Paul Belches 17088
+*/
 public class db {
 	private MongoClient mongo;
     private Morphia morphia;
@@ -23,6 +25,9 @@ public class db {
     	ds2 = morphia.createDatastore(mongo, "Cubico");
     	ds3 = morphia.createDatastore(mongo, "Cilindrico");
     }
+    /**
+     * @return
+     */
     public ArrayList<Tanque> cargar(){
     	morphia.mapPackage("(default package)");
     	ArrayList<Tanque> r = new ArrayList();
@@ -43,6 +48,9 @@ public class db {
         }
         return r; 
     }
+    /**
+     * @param t
+     */
     public void guardar(ArrayList<Tanque> t) {
     	for (Tanque a:t) {
     		if (a.getClass() == Ortogonal.class ) {
